@@ -1,12 +1,10 @@
 package com.willian.biblioteca.controller;
 
 import com.willian.biblioteca.model.Autor;
+import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +22,16 @@ public class AutorController {
     @GetMapping(path = "/autores/id/{id}")
     public Optional <Autor> buscarAutorPorId(@PathVariable (value = "id", required = true) Long idAutor){
         return autorRepository.findById(idAutor);
+    }
+
+    @PostMapping(path = "/autores/save")
+    public void salvarAutoreso(@RequestBody Autor autor){
+        autorRepository.save(autor);
+    }
+
+    @DeleteMapping(path = "/livros/autores/{id}")
+    public void deleteAutores(@PathVariable (name ="id", required = true) Long id){
+        autorRepository.deleteById(id);
     }
 
 }
