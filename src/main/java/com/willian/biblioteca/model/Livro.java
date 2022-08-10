@@ -1,20 +1,21 @@
 package com.willian.biblioteca.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Livro {
+public class Livro implements Serializable{
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private Long id;
 
     private String nome;
 
-    private Long idAutor;
+    private int idAutor;
 
 
-    private Long idEditora;
+    private int idEditora;
 
 
     private String ano;
@@ -22,8 +23,8 @@ public class Livro {
 
     private boolean reservado;
 
-    public Livro(long id, String nome, Long idAutor, Long idEditora, String ano, boolean reservado) {
-        this.id = id;
+    public Livro(String nome, int idAutor, int idEditora, String ano, boolean reservado) {
+
         this.nome = nome;
         this.idAutor = idAutor;
         this.idEditora = idEditora;
@@ -35,7 +36,7 @@ public class Livro {
     public Livro() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -47,15 +48,15 @@ public class Livro {
         this.nome = nome;
     }
 
-    public Long getIdAutor() {
+    public int getIdAutor() {
         return idAutor;
     }
 
-    public void setIdAutor(Long autor) {
+    public void setIdAutor(int autor) {
         this.idAutor = idAutor;
     }
 
-    public Long getIdEditora() {
+    public int getIdEditora() {
         return idEditora;
     }
 
