@@ -7,12 +7,12 @@ public class Biblioteca {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    private Long idLivro;
+    private int idLivro;
 
 
-    public Biblioteca(Long id, Long idLivro) {
+    public Biblioteca(int id, int idLivro) {
         this.id = id;
         this.idLivro = idLivro;
     }
@@ -20,15 +20,15 @@ public class Biblioteca {
     public Biblioteca() {
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public Long getidLivro() {
+    public int getidLivro() {
         return idLivro;
     }
 
-    public void setidLivro(Long idLivro) {
+    public void setidLivro(int idLivro) {
         this.idLivro = idLivro;
     }
 
