@@ -10,12 +10,22 @@ public class LivroResource {
     private String nome;
 
     @JsonProperty("id_autor")
-    private Long idAutor;
+    private String idAutor;
 
     @JsonProperty("id_editora")
-    private Long idEditora;
+    private String idEditora;
 
-    public LivroResource(String nome, Long idAutor, Long idEditora) {
+    @JsonProperty
+    private String Ano;
+
+    public LivroResource(String nome, String idAutor, String idEditora, String ano) {
+        this.nome = nome;
+        this.idAutor = idAutor;
+        this.idEditora = idEditora;
+        Ano = ano;
+    }
+
+    public LivroResource(String nome, String idAutor, String idEditora) {
         this.nome = nome;
         this.idAutor = idAutor;
         this.idEditora = idEditora;
@@ -29,19 +39,38 @@ public class LivroResource {
         this.nome = nome;
     }
 
-    public Long getIdAutor() {
+    public String getIdAutor() {
         return idAutor;
     }
 
-    public void setIdAutor(Long idAutor) {
+    public void setIdAutor(String idAutor) {
         this.idAutor = idAutor;
     }
 
-    public Long getIdEditora() {
+    public String getIdEditora() {
         return idEditora;
     }
 
-    public void setIdEditora(Long idEditora) {
+    public void setIdEditora(String idEditora) {
         this.idEditora = idEditora;
+    }
+
+
+    public String getAno() {
+        return Ano;
+    }
+
+    public void setAno(String ano) {
+        Ano = ano;
+    }
+
+    @Override
+    public String toString() {
+        return "LivroResource{" +
+                "nome='" + nome + '\'' +
+                ", idAutor='" + idAutor + '\'' +
+                ", idEditora='" + idEditora + '\'' +
+                ", Ano='" + Ano + '\'' +
+                '}';
     }
 }

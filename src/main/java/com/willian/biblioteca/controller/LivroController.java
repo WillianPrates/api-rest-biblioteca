@@ -2,6 +2,9 @@ package com.willian.biblioteca.controller;
 
 import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.LivroRepository;
+import com.willian.biblioteca.resource.LivroResource;
+import com.willian.biblioteca.service.BuscarLivrosService;
+import com.willian.biblioteca.service.CadastroLivro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +18,16 @@ public class LivroController {
     @Autowired
     private LivroRepository livroRepository;
 
+    @Autowired
+    private BuscarLivrosService bucarLivrosService;
+
+    @Autowired
+    private CadastroLivro cadastroLivro;
+
     @GetMapping(path = "/livros")
     public List<Livro> buscarLivro(){
-        return livroRepository.findAll();
+
+        return bucarLivrosService.buscarTodosOsLivros();
     }
 
     @GetMapping(path = "/livros/id/{id}")
@@ -26,8 +36,10 @@ public class LivroController {
     }
 
     @PostMapping(path = "/livros/save")
-    public void salvarLivro(@RequestBody Livro livro){
-        livroRepository.save(livro);
+    public void salvarLivro(@RequestBody LivroResource livro){
+
+        cadastroLivro.cadastroLivro(livro);
+        ;
     }
 
     @DeleteMapping(path = "/livros/delete/{id}")

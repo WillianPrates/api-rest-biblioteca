@@ -3,6 +3,10 @@ package com.willian.biblioteca.controller;
 import com.willian.biblioteca.model.Editora;
 import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.EditoraRepository;
+import com.willian.biblioteca.resource.EditoraResource;
+import com.willian.biblioteca.service.BuscarAutoresService;
+import com.willian.biblioteca.service.BuscarEditorasService;
+import com.willian.biblioteca.service.CadastroEditora;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +20,16 @@ public class EditoraController {
     @Autowired
     private EditoraRepository editoraRepository;
 
+    @Autowired
+    private BuscarEditorasService buscarEditorasService;
+
+    @Autowired
+    private CadastroEditora cadastroEditora;
+
     @GetMapping(path = "/editoras")
-    public List<Editora> buscarEditoras(){return editoraRepository.findAll();}
+    public List<Editora> buscarEditoras(){
+        return buscarEditorasService.buscarTodasEditoras();
+    }
 
     @GetMapping(path = "/editoras/id/{id}")
     public Optional <Editora> buscarEditoraPorId(@PathVariable (value = "id", required = true) Long idEdiora){
@@ -25,8 +37,9 @@ public class EditoraController {
     }
 
     @PostMapping(path = "/editoras/save")
-    public void salvarLivro(@RequestBody Editora editora){
-        editoraRepository.save(editora);
+    public void salvarLivro(@RequestBody EditoraResource editoraResource){
+
+        cadastroEditora.cadastroEditora(editoraResource);
     }
 
     @DeleteMapping(path = "/livros/editoras/{id}")

@@ -8,7 +8,7 @@ public class Autor implements Serializable {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private long idAutor;
+    private int idAutor;
 
     public String nomeAutor;
 
@@ -20,7 +20,7 @@ public class Autor implements Serializable {
     public Autor() {
     }
 
-    public long getIdAutor() {
+    public int getIdAutor() {
         return idAutor;
     }
 

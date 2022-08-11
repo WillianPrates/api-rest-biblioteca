@@ -11,7 +11,7 @@ public class Livro implements Serializable{
 
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     private String nome;
 
@@ -39,7 +39,7 @@ public class Livro implements Serializable{
     public Livro() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -63,7 +63,7 @@ public class Livro implements Serializable{
         return idEditora;
     }
 
-    public void setIdEditora(String editora) {
+    public void setIdEditora(int editora) {
         this.idEditora = idEditora;
     }
 
