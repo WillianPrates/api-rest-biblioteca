@@ -36,7 +36,7 @@ public class BuscaAutorPorIdService {
         Optional<Autor> optionalAutor = getOptional(id);
         Autor autor;
         if (!optionalAutor.isPresent()){
-            throw new EditoraNotFound("Editora não encontrado!" + id);
+            throw new EditoraNotFound("Autor não encontrado!" + id);
         } else {
             autorRepository.delete(optionalAutor.get());
         }

@@ -41,9 +41,9 @@ class BuscarLivroPorIdServiceTest {
     @Test
     public void deletarPortId() throws LivroNotFound {
 
-        Optional<Livro> optionalLivro = livroRepository.findById(11);
-
         livroController.deleteLivro(11);
+
+        Optional<Livro> optionalLivro = livroRepository.findById(11);
 
         assertFalse(optionalLivro.isPresent());
 

@@ -72,7 +72,9 @@ public class BibliotecaApplication implements CommandLineRunner {
 		editora = editoraController.buscarEditoraPorId(3);
 		System.out.println(editora);
 
-		editoraController.deleteEditora(1);
+		//editoraController.deleteEditora(4);
+
+		//editoraController.deleteEditora(1);
 
 
 

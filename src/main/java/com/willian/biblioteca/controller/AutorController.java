@@ -45,7 +45,7 @@ public class AutorController {
         cadastroAutor.cadastroAutor(autorResource);
     }
 
-    @DeleteMapping(path = "/livros/autores/{id}")
+    @DeleteMapping(path = "/autores/delete/{id}")
     public void deleteAutores(@PathVariable (name ="id", required = true) int id) throws EditoraNotFound {
 
         buscaAutorPorIdService.deletarPorId(id);

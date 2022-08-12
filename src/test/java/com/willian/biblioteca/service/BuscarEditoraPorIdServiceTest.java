@@ -41,10 +41,9 @@ class BuscarEditoraPorIdServiceTest {
     @Test
     void deletarPorId() throws EditoraNotFound {
 
-        Optional<Editora> editoraOptional = editoraRepository.findById(4);
-
-
         editoraController.deleteEditora(4);
+
+        Optional<Editora> editoraOptional = editoraRepository.findById(4);
 
         assertFalse(editoraOptional.isPresent());
 
