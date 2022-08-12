@@ -8,7 +8,9 @@ import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.AutorRepository;
 import com.willian.biblioteca.repository.EditoraRepository;
 import com.willian.biblioteca.repository.LivroRepository;
+import com.willian.biblioteca.resource.LivroResource;
 import com.willian.biblioteca.service.BuscarLivroPorIdService;
+import com.willian.biblioteca.service.CadastroLivro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -65,18 +67,6 @@ public class BibliotecaApplication implements CommandLineRunner {
 		editoraRepository.saveAll(Arrays.asList(e1,e2,e3,e4,e5));
 		autorRepository.saveAll(Arrays.asList(a1,a2,a3,a4));
 		livroRepository.saveAll(Arrays.asList(l1,l2,l3, l4, l5, l6));
-
-		System.out.println("--------------- TESTE ------------------------");
-		livroController.deleteLivro(14);
-		Editora editora = new Editora();
-		editora = editoraController.buscarEditoraPorId(3);
-		System.out.println(editora);
-
-		//editoraController.deleteEditora(4);
-
-		//editoraController.deleteEditora(1);
-
-
 
 	}
 }

@@ -2,7 +2,9 @@ package com.willian.biblioteca.service;
 
 import com.willian.biblioteca.controller.EditoraController;
 import com.willian.biblioteca.exception.EditoraNotFound;
+import com.willian.biblioteca.exception.LivroNotFound;
 import com.willian.biblioteca.model.Editora;
+import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.EditoraRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -12,15 +14,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.Optional;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
-class BuscarEditoraPorIdServiceTest {
+class CadastroEditoraTest {
 
     @Autowired
     @Mock
@@ -30,26 +31,16 @@ class BuscarEditoraPorIdServiceTest {
     @Mock
     private EditoraController editoraController;
 
-    private Editora editora;
-
-
     @Test
-    void buscarPorId() throws EditoraNotFound {
+    void cadastroEditora() throws EditoraNotFound {
 
-        editora = editoraController.buscarEditoraPorId(5);
+        Editora eTeste = new Editora("Super Marca");
+        CadastroEditora cadastroEditora = new CadastroEditora();
+        editoraRepository.saveAll(Arrays.asList(eTeste));
 
-        assertEquals("Editora Padrao", editora.getNomeEditora());
+        Editora editora = editoraController.buscarEditoraPorId(eTeste.getIdEditora());
+        assertEquals("Super Marca", editora.getNomeEditora());
     }
 
-    @Test
-    void deletarPorId() throws EditoraNotFound {
 
-        editoraController.deleteEditora(4);
-
-        Optional<Editora> editoraOptional = editoraRepository.findById(4);
-
-        assertFalse(editoraOptional.isPresent());
-
-
-    }
 }

@@ -1,12 +1,10 @@
 package com.willian.biblioteca.service;
 
 import com.willian.biblioteca.controller.AutorController;
-import com.willian.biblioteca.controller.EditoraController;
+import com.willian.biblioteca.exception.AutorNotFound;
 import com.willian.biblioteca.exception.EditoraNotFound;
 import com.willian.biblioteca.model.Autor;
-import com.willian.biblioteca.model.Editora;
 import com.willian.biblioteca.repository.AutorRepository;
-import com.willian.biblioteca.repository.EditoraRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,44 +13,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.Optional;
+import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
-class BuscaAutorPorIdServiceTest {
-
+class CadastroAutorTest {
 
     @Autowired
+    @Mock
     private AutorRepository autorRepository;
 
     @Autowired
     @Mock
     private AutorController autorController;
 
-    @Autowired
-    @Mock
-    private Autor autor;
-
-
     @Test
-    void buscarPorId() throws EditoraNotFound {
+    void cadastroAutor() throws AutorNotFound, EditoraNotFound {
 
-        autor = autorController.buscarAutorPorId(7);
+        Autor aTeste = new Autor("Elvis Presley");
+        CadastroAutor cadastroAutor = new CadastroAutor();
+        autorRepository.saveAll(Arrays.asList(aTeste));
 
-        assertEquals("Willian Prates", autor.getNomeAutor());
-
+        assertEquals("Elvis Presley", aTeste.getNomeAutor());
     }
 
-    @Test
-    void deletarPorId() throws EditoraNotFound {
-
-        autorController.deleteAutores(7);
-
-        Optional<Autor> autorOptional = autorRepository.findById(4);
-
-        assertFalse(autorOptional.isPresent());
-    }
 }

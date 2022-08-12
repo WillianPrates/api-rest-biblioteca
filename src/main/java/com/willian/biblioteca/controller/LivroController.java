@@ -43,7 +43,7 @@ public class LivroController {
     public void salvarLivro(@RequestBody LivroResource livro){
 
         cadastroLivro.cadastroLivro(livro);
-        ;
+
     }
 
     @DeleteMapping(path = "/livros/delete/{id}")

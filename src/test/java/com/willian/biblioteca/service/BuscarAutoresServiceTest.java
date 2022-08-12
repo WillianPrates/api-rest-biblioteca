@@ -1,6 +1,8 @@
 package com.willian.biblioteca.service;
 
+import com.willian.biblioteca.model.Autor;
 import com.willian.biblioteca.model.Livro;
+import com.willian.biblioteca.repository.AutorRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -11,28 +13,26 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
-class BuscarLivrosServiceTest {
-
+class BuscarAutoresServiceTest {
 
     @Autowired
     @Mock
-    private BuscarLivrosService buscarLivrosService;
-
+    private BuscarAutoresService buscarAutoresService;
     @Test
-    public void buscarTodosOsLivros() {
-        List<Livro> livroList = buscarLivrosService.buscarTodosOsLivros();
+    void buscarTodosOsAutores() {
         boolean possui;
-        if (!livroList.isEmpty()){
+        List<Autor> autorList = buscarAutoresService.buscarTodosOsAutores();
+        if (!autorList.isEmpty()){
             possui = true;
         } else {
             possui = false;
         }
         assertTrue(possui);
     }
+
 }

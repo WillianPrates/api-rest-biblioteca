@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class LivroResource {
 
+    @JsonProperty
+    private String id;
     @JsonProperty("nome_livro")
     private String nome;
 
@@ -17,6 +19,14 @@ public class LivroResource {
 
     @JsonProperty
     private String Ano;
+
+    public LivroResource(String id, String nome, String idAutor, String idEditora, String ano) {
+        this.id = id;
+        this.nome = nome;
+        this.idAutor = idAutor;
+        this.idEditora = idEditora;
+        Ano = ano;
+    }
 
     public LivroResource(String nome, String idAutor, String idEditora, String ano) {
         this.nome = nome;
@@ -31,6 +41,7 @@ public class LivroResource {
         this.idEditora = idEditora;
     }
 
+    public String getId(){return id;}
     public String getNome() {
         return nome;
     }
