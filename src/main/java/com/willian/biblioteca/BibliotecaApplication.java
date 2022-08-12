@@ -1,11 +1,13 @@
 package com.willian.biblioteca;
 
+import com.willian.biblioteca.controller.LivroController;
 import com.willian.biblioteca.model.Autor;
 import com.willian.biblioteca.model.Editora;
 import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.AutorRepository;
 import com.willian.biblioteca.repository.EditoraRepository;
 import com.willian.biblioteca.repository.LivroRepository;
+import com.willian.biblioteca.service.BuscarLivroPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,9 +26,15 @@ public class BibliotecaApplication implements CommandLineRunner {
 	@Autowired
 	private LivroRepository livroRepository;
 
+	@Autowired
+	private LivroController livroController;
+
+	@Autowired
 	public static void main(String[] args) {
 		SpringApplication.run(BibliotecaApplication.class, args);
 	}
+
+	BuscarLivroPorIdService buscarLivroPorIdService = new BuscarLivroPorIdService();
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -52,5 +60,10 @@ public class BibliotecaApplication implements CommandLineRunner {
 		editoraRepository.saveAll(Arrays.asList(e1,e2,e3,e4));
 		autorRepository.saveAll(Arrays.asList(a1,a2,a3,a4));
 		livroRepository.saveAll(Arrays.asList(l1,l2,l3, l4, l5, l6));
+
+		System.out.println("--------------- TESTE ------------------------");
+		livroController.deleteLivro(14);
+
+
 	}
 }

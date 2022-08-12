@@ -15,18 +15,19 @@ public class BuscarLivroPorIdService {
     private LivroRepository livroRepository;
 
     public Livro buscarPorId(int id) throws LivroNotFound {
-        Optional<Livro> optionalLivro = getOptional(id);
         Livro livro;
+        Optional<Livro> optionalLivro = getOptional(id);
         if (!optionalLivro.isPresent()){
             throw new LivroNotFound("Livro não encontrado!" + id);
         } else {
             livro = optionalLivro.get();
+
         }
         return livro;
 
     }
 
-    private Optional<Livro> getOptional(int id) {
+    public Optional<Livro> getOptional(int id) {
         Optional<Livro> optionalLivro = livroRepository.findById(id);
         return optionalLivro;
     }
@@ -34,7 +35,7 @@ public class BuscarLivroPorIdService {
     public void deletarPorId(int id) throws LivroNotFound {
 
         Optional<Livro> optionalLivro = getOptional(id);
-        Livro livro;
+
         if (!optionalLivro.isPresent()){
             throw new LivroNotFound("Livro não encontrado!" + id);
         }else{
