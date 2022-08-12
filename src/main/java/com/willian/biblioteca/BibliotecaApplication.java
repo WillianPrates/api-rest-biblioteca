@@ -1,5 +1,6 @@
 package com.willian.biblioteca;
 
+import com.willian.biblioteca.controller.EditoraController;
 import com.willian.biblioteca.controller.LivroController;
 import com.willian.biblioteca.model.Autor;
 import com.willian.biblioteca.model.Editora;
@@ -30,6 +31,9 @@ public class BibliotecaApplication implements CommandLineRunner {
 	private LivroController livroController;
 
 	@Autowired
+	private EditoraController editoraController;
+
+	@Autowired
 	public static void main(String[] args) {
 		SpringApplication.run(BibliotecaApplication.class, args);
 	}
@@ -50,6 +54,7 @@ public class BibliotecaApplication implements CommandLineRunner {
 		Editora e2 = new Editora("Editora Santana");
 		Editora e3 = new Editora("Editora Domingos");
 		Editora e4 = new Editora("Editora Falimiar");
+		Editora e5 = new Editora("Editora Padrao");
 
 		Autor a1 = new Autor("Mauricio Saraiva");
 		Autor a2 = new Autor("Willian Prates");
@@ -57,12 +62,18 @@ public class BibliotecaApplication implements CommandLineRunner {
 		Autor a4 = new Autor("Bruce Willis");
 
 
-		editoraRepository.saveAll(Arrays.asList(e1,e2,e3,e4));
+		editoraRepository.saveAll(Arrays.asList(e1,e2,e3,e4,e5));
 		autorRepository.saveAll(Arrays.asList(a1,a2,a3,a4));
 		livroRepository.saveAll(Arrays.asList(l1,l2,l3, l4, l5, l6));
 
 		System.out.println("--------------- TESTE ------------------------");
 		livroController.deleteLivro(14);
+		Editora editora = new Editora();
+		editora = editoraController.buscarEditoraPorId(3);
+		System.out.println(editora);
+
+		editoraController.deleteEditora(1);
+
 
 
 	}

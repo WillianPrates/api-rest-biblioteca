@@ -15,8 +15,10 @@ public class BuscarLivroPorIdService {
     private LivroRepository livroRepository;
 
     public Livro buscarPorId(int id) throws LivroNotFound {
+
         Livro livro;
         Optional<Livro> optionalLivro = getOptional(id);
+
         if (!optionalLivro.isPresent()){
             throw new LivroNotFound("Livro não encontrado!" + id);
         } else {

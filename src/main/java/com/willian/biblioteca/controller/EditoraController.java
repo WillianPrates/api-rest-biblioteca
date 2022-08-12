@@ -31,20 +31,20 @@ public class EditoraController {
         return buscarEditorasService.buscarTodasEditoras();
     }
 
-    @GetMapping(path = "/editoras/id/{id}")
-    public Editora buscarEditoraPorId(@PathVariable (value = "id", required = true) int id) throws EditoraNotFound {
-        return buscarEditoraPorIdService.buscarPorId(id);
+    @GetMapping(path = "/editoras/id/{idEditora}")
+    public Editora buscarEditoraPorId(@PathVariable (value = "id", required = true) int idEditora) throws EditoraNotFound {
+        return buscarEditoraPorIdService.buscarPorId(idEditora);
     }
 
     @PostMapping(path = "/editoras/save")
-    public void salvarLivro(@RequestBody EditoraResource editoraResource){
+    public void salvarEditora(@RequestBody EditoraResource editoraResource){
 
         cadastroEditora.cadastroEditora(editoraResource);
     }
 
-    @DeleteMapping(path = "/livros/editoras/{id}")
-    public void deleteEditora(@PathVariable (name ="id", required = true) int id) throws EditoraNotFound {
+    @DeleteMapping(path = "/editoras/delete/{idEditora}")
+    public void deleteEditora(@PathVariable (name ="idEditora", required = true) int idEditora) throws EditoraNotFound {
 
-        buscarEditoraPorIdService.deletarPorId(id);
+        buscarEditoraPorIdService.deletarPorId(idEditora);
     }
 }

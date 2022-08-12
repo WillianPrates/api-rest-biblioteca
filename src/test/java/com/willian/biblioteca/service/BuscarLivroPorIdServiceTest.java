@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -32,16 +32,14 @@ class BuscarLivroPorIdServiceTest {
 
         Livro livro = livroController.buscarLivroPorId(11);
 
-        assertEquals("os pentes do careca", livro.getNome());
-        assertEquals("4", String.valueOf(livro.getIdAutor()));
-        assertEquals("3", String.valueOf(livro.getIdEditora()));
+        assertEquals("poeira em alto mar", livro.getNome());
+        assertEquals("1", String.valueOf(livro.getIdAutor()));
+        assertEquals("4", String.valueOf(livro.getIdEditora()));
         assertEquals("2022", livro.getAno());
     }
 
     @Test
     public void deletarPortId() throws LivroNotFound {
-
-
 
         Optional<Livro> optionalLivro = livroRepository.findById(11);
 

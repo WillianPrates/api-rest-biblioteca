@@ -12,7 +12,7 @@ public class Editora implements Serializable {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    public Long idEdiora;
+    public int idEditora;
 
     public String nomeEditora;
 
@@ -24,12 +24,8 @@ public class Editora implements Serializable {
     public Editora() {
     }
 
-    public Long getIdEdiora() {
-        return idEdiora;
-    }
-
-    public void setIdEdiora(Long idEdiora) {
-        this.idEdiora = idEdiora;
+    public int getIdEditora() {
+        return idEditora;
     }
 
     public String getNomeEditora() {
@@ -45,18 +41,18 @@ public class Editora implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Editora editora = (Editora) o;
-        return Objects.equals(idEdiora, editora.idEdiora) && Objects.equals(nomeEditora, editora.nomeEditora);
+        return Objects.equals(idEditora, editora.idEditora) && Objects.equals(nomeEditora, editora.nomeEditora);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEdiora, nomeEditora);
+        return Objects.hash(idEditora, nomeEditora);
     }
 
     @Override
     public String toString() {
         return "Editora{" +
-                "idEdiora=" + idEdiora +
+                "idEdiora=" + idEditora +
                 ", nomeEditora='" + nomeEditora + '\'' +
                 '}';
     }

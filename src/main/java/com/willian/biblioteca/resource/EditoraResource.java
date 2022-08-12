@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class EditoraResource {
 
     @JsonProperty("nome_editora")
-    private String nomeEditora;
+    public String nomeEditora;
 
     public EditoraResource(String nomeEditora) {
         this.nomeEditora = nomeEditora;

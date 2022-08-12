@@ -14,11 +14,14 @@ public class BuscarEditoraPorIdService {
     @Autowired
     private EditoraRepository editoraRepository;
 
-    public Editora buscarPorId(int id) throws EditoraNotFound {
-        Optional<Editora> optionalEditora = getOptional(id);
+    public Editora buscarPorId(int idEditora) throws EditoraNotFound {
+
         Editora editora;
+        Optional<Editora> optionalEditora = getOptional(idEditora);
+
+
         if (!optionalEditora.isPresent()){
-            throw new EditoraNotFound("Editora não encontrado!" + id);
+            throw new EditoraNotFound("Editora não encontrado!" + idEditora);
         } else {
             editora = optionalEditora.get();
         }
@@ -26,19 +29,18 @@ public class BuscarEditoraPorIdService {
 
     }
 
-    private Optional<Editora> getOptional(int id) {
-        Optional<Editora> optionalEditora = editoraRepository.findById(id);
+    public Optional<Editora> getOptional(int idEditora) {
+        Optional<Editora> optionalEditora = editoraRepository.findById(idEditora);
         return optionalEditora;
     }
 
-    public void deletarPorId(int id) throws EditoraNotFound {
-        Optional<Editora> optionalEditora = getOptional(id);
+    public void deletarPorId(int idEditora) throws EditoraNotFound {
+        Optional<Editora> optionalEditora = getOptional(idEditora);
 
-        Editora editora;
+
         if (!optionalEditora.isPresent()){
-            throw new EditoraNotFound("Editora não encontrado!" + id);
+            throw new EditoraNotFound("Editora não encontrado!" + idEditora);
         } else {
-            editora = optionalEditora.get();
 
             editoraRepository.delete(optionalEditora.get());;
         }
