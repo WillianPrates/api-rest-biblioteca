@@ -1,6 +1,5 @@
 package com.willian.biblioteca.service;
 
-import com.willian.biblioteca.model.Autor;
 import com.willian.biblioteca.model.Editora;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -27,7 +26,7 @@ class BuscarEditorasServiceTest {
     void buscarTodasEditoras() {
         boolean possui;
         List<Editora> editoraList = buscarEditorasService.buscarTodasEditoras();
-        if (!editoraList.isEmpty()){
+        if (!editoraList.isEmpty()) {
             possui = true;
         } else {
             possui = false;

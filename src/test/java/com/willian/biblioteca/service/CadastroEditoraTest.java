@@ -2,9 +2,7 @@ package com.willian.biblioteca.service;
 
 import com.willian.biblioteca.controller.EditoraController;
 import com.willian.biblioteca.exception.EditoraNotFound;
-import com.willian.biblioteca.exception.LivroNotFound;
 import com.willian.biblioteca.model.Editora;
-import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.EditoraRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

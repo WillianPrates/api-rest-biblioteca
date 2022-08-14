@@ -28,7 +28,7 @@ class BuscarLivrosServiceTest {
     public void buscarTodosOsLivros() {
         List<Livro> livroList = buscarLivrosService.buscarTodosOsLivros();
         boolean possui;
-        if (!livroList.isEmpty()){
+        if (!livroList.isEmpty()) {
             possui = true;
         } else {
             possui = false;

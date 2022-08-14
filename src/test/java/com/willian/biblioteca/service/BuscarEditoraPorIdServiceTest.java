@@ -32,7 +32,6 @@ class BuscarEditoraPorIdServiceTest {
 
     private Editora editora;
 
-
     @Test
     void buscarPorId() throws EditoraNotFound {
 
