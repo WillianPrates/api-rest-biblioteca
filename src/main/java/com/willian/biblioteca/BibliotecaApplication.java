@@ -45,10 +45,10 @@ public class BibliotecaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Livro l1 = new Livro("a volta dos que nao foram", 2, 2,"2022",true);
+		Livro l1 = new Livro("a volta dos que nao foram", 2, 2,"2022",false);
 		Livro l2 = new Livro("poeira em alto mar", 1, 4,"2022",false);
-		Livro l3 = new Livro("os pentes do careca", 4, 3,"2022",true);
-		Livro l4 = new Livro("a trança do careca", 4, 3,"2022",true);
+		Livro l3 = new Livro("os pentes do careca", 4, 3,"2022",false);
+		Livro l4 = new Livro("a trança do careca", 4, 3,"2022",false);
 		Livro l5 = new Livro("didi", 3, 1,"2022",false);
 		Livro l6 = new Livro("didi 2", 1, 2,"2022",false);
 
