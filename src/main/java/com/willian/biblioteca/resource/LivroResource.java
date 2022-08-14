@@ -1,20 +1,18 @@
 package com.willian.biblioteca.resource;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 public class LivroResource {
 
     @JsonProperty
     private String id;
-    @JsonProperty("nome_livro")
+    @JsonProperty()
     private String nome;
 
-    @JsonProperty("id_autor")
+    @JsonProperty()
     private String idAutor;
 
-    @JsonProperty("id_editora")
+    @JsonProperty()
     private String idEditora;
 
     @JsonProperty
@@ -41,7 +39,17 @@ public class LivroResource {
         this.idEditora = idEditora;
     }
 
-    public String getId(){return id;}
+    public LivroResource() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -66,7 +74,6 @@ public class LivroResource {
         this.idEditora = idEditora;
     }
 
-
     public String getAno() {
         return Ano;
     }
@@ -84,4 +91,5 @@ public class LivroResource {
                 ", Ano='" + Ano + '\'' +
                 '}';
     }
+
 }

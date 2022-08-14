@@ -7,10 +7,10 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class Livro implements Serializable{
+public class Livro implements Serializable {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String nome;
@@ -43,6 +43,10 @@ public class Livro implements Serializable{
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -55,7 +59,7 @@ public class Livro implements Serializable{
         return idAutor;
     }
 
-    public void setIdAutor(int autor) {
+    public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
     }
 
@@ -63,7 +67,7 @@ public class Livro implements Serializable{
         return idEditora;
     }
 
-    public void setIdEditora(int editora) {
+    public void setIdEditora(int idEditora) {
         this.idEditora = idEditora;
     }
 

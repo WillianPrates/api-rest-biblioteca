@@ -15,10 +15,12 @@ public class CadastroLivro {
     @Autowired
     private LivroRepository livroRepository;
 
-    @Autowired LivroConversor conversorService;
+    @Autowired
+    private LivroConversor conversorService;
 
     public void cadastroLivro(LivroResource livroResource){
         Livro livro;
+
         try {
             livro = conversorService.conversor(livroResource);
             livroRepository.saveAndFlush(livro);

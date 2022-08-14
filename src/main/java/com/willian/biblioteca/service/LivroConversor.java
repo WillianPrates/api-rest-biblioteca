@@ -8,31 +8,34 @@ import org.springframework.stereotype.Component;
 @Component
 public class LivroConversor {
 
+    String idAutorString;
+    String idEditoraString;
+
     public Livro conversor(LivroResource livroResource) throws LivroResourceException {
 
-        try{
-            Livro livro = new Livro();
+        idAutorString = livroResource.getIdAutor();
+        idEditoraString = livroResource.getIdEditora();
 
-            int idAutor = checkIdAutor(livroResource.getIdAutor());
 
-            int idEditora = checkIdEditora(livroResource.getIdEditora());
+        try {
+            Livro livroSave = new Livro();
 
-            livro.setIdAutor(idAutor);
-            livro.setIdEditora(idEditora);
-            livro.setNome(livroResource.getNome());
-            livro.setAno(livroResource.getAno());
+            livroSave.setIdAutor(Integer.parseInt(this.idAutorString));
+            livroSave.setIdEditora(Integer.parseInt(this.idEditoraString));
+            livroSave.setNome(livroResource.getNome());
+            livroSave.setAno(livroResource.getAno());
 
-            return livro;
-        }catch (Exception e){
+            return livroSave;
+        } catch (Exception e) {
             throw new LivroResourceException("Falha ao converter o resource para entidade, resource: " + livroResource);
         }
     }
 
-    private int checkIdAutor(String idAutor){
+    private int checkIdAutor(String idAutor) {
         return Integer.parseInt(idAutor);
     }
 
-    private int checkIdEditora(String idEditora){
+    private int checkIdEditora(String idEditora) {
         return Integer.parseInt(idEditora);
     }
 }
