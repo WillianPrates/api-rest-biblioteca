@@ -3,48 +3,39 @@ package com.willian.biblioteca.controller;
 import com.willian.biblioteca.exception.EditoraNotFound;
 import com.willian.biblioteca.model.Editora;
 import com.willian.biblioteca.resource.EditoraResource;
-import com.willian.biblioteca.service.BuscarEditoraPorIdService;
-import com.willian.biblioteca.service.BuscarEditorasService;
-import com.willian.biblioteca.service.CadastroEditora;
+import com.willian.biblioteca.service.EditoraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/estante")
+@RequestMapping(value = "/")
 public class EditoraController {
 
 
-
     @Autowired
-    private BuscarEditorasService buscarEditorasService;
+    private EditoraService editoraService;
 
-    @Autowired
-    private CadastroEditora cadastroEditora;
-
-    @Autowired
-    private BuscarEditoraPorIdService buscarEditoraPorIdService;
-
-    @GetMapping(path = "/editoras")
+    @GetMapping(path = "/editora")
     public List<Editora> buscarEditoras(){
-        return buscarEditorasService.buscarTodasEditoras();
+        return editoraService.buscarTodasEditoras();
     }
 
-    @GetMapping(path = "/editoras/id/{idEditora}")
+    @GetMapping(path = "/editora/{idEditora}")
     public Editora buscarEditoraPorId(@PathVariable (value = "id", required = true) int idEditora) throws EditoraNotFound {
-        return buscarEditoraPorIdService.buscarPorId(idEditora);
+        return editoraService.buscarPorId(idEditora);
     }
 
-    @PostMapping(path = "/editoras/save")
+    @PostMapping(path = "/editora")
     public void salvarEditora(@RequestBody EditoraResource editoraResource){
 
-        cadastroEditora.cadastroEditora(editoraResource);
+        editoraService.cadastroEditora(editoraResource);
     }
 
-    @DeleteMapping(path = "/editoras/delete/{idEditora}")
+    @DeleteMapping(path = "/editora/{idEditora}")
     public void deleteEditora(@PathVariable (name ="idEditora", required = true) int idEditora) throws EditoraNotFound {
 
-        buscarEditoraPorIdService.deletarPorId(idEditora);
+        editoraService.deletarPorId(idEditora);
     }
 }

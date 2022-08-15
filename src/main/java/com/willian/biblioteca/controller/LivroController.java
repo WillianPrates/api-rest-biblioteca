@@ -5,9 +5,7 @@ import com.willian.biblioteca.exception.LivroResourceException;
 import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.LivroRepository;
 import com.willian.biblioteca.resource.LivroResource;
-import com.willian.biblioteca.service.BuscarLivroPorIdService;
-import com.willian.biblioteca.service.BuscarLivrosService;
-import com.willian.biblioteca.service.CadastroLivro;
+import com.willian.biblioteca.service.LivroService;
 import com.willian.biblioteca.service.LivroConversor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/estante")
+@RequestMapping(value = "/")
 public class LivroController {
 
-
     @Autowired
-    private BuscarLivrosService bucarLivrosService;
-
-    @Autowired
-    private CadastroLivro cadastroLivro;
-
-    @Autowired
-    private BuscarLivroPorIdService buscarLivroPorIdService;
+    private LivroService livroService;
 
     @Autowired
     private LivroConversor livroConversor;
@@ -34,29 +25,29 @@ public class LivroController {
     @Autowired
     private LivroRepository livroRepository;
 
-    @GetMapping(path = "/livros")
+    @GetMapping(path = "/livro")
     public List<Livro> buscarLivro() {
 
-        return bucarLivrosService.buscarTodosOsLivros();
+        return livroService.buscarTodosOsLivros();
     }
 
-    @GetMapping(path = "/livros/id/{id}")
+    @GetMapping(path = "/livro/{id}")
     public Livro buscarLivroPorId(@PathVariable(value = "id", required = true) int id) throws LivroNotFound {
-        return buscarLivroPorIdService.buscarPorId(id);
+        return livroService.buscarPorId(id);
     }
 
-    @PostMapping(path = "/livros/save")
+    @PostMapping(path = "/livro")
     public void salvarLivro(@RequestBody LivroResource livro) throws LivroResourceException {
-        cadastroLivro.cadastroLivro(livro);
+        livroService.cadastroLivro(livro);
 
     }
-    @DeleteMapping(path = "/livros/delete/{id}")
+    @DeleteMapping(path = "/livro/{id}")
     public void deleteLivro(@PathVariable(name = "id", required = true) int id) throws LivroNotFound {
 
-        buscarLivroPorIdService.deletarPorId(id);
+        livroService.deletarPorId(id);
     }
 
-    @PutMapping(path = "/livros/reserva/{id}")
+    @PutMapping(path = "/livro/{id}")
     public void reservaLivro(@PathVariable("id") Integer id, @RequestBody LivroResource livro) throws Exception {
         var l = livroRepository.findById(id);
 
@@ -73,7 +64,7 @@ public class LivroController {
         }
     }
 
-    @PutMapping(path = "/livros/devolve/{id}")
+    @PutMapping(path = "/livro{id}")
     public void DevolveLivro(@PathVariable("id") Integer id, @RequestBody LivroResource livro) throws Exception {
         var l = livroRepository.findById(id);
 

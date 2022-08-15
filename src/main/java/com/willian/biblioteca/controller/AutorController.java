@@ -2,50 +2,41 @@ package com.willian.biblioteca.controller;
 
 import com.willian.biblioteca.exception.EditoraNotFound;
 import com.willian.biblioteca.model.Autor;
-import com.willian.biblioteca.repository.AutorRepository;
 import com.willian.biblioteca.resource.AutorResource;
-import com.willian.biblioteca.service.BuscaAutorPorIdService;
-import com.willian.biblioteca.service.BuscarAutoresService;
-import com.willian.biblioteca.service.CadastroAutor;
+import com.willian.biblioteca.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/estante")
+@RequestMapping(value = "/")
 public class AutorController {
 
-
+    @Autowired
+    private AutorService autorService;
 
     @Autowired
-    private BuscarAutoresService buscarAutoresService;
+    private AutorService buscaAutorPorIdService;
 
-    @Autowired
-    private CadastroAutor cadastroAutor;
-
-    @Autowired
-    private BuscaAutorPorIdService buscaAutorPorIdService;
-
-    @GetMapping(path = "/autores")
+    @GetMapping(path = "/autor")
     public List<Autor> buscarAutor(){
 
-        return buscarAutoresService.buscarTodosOsAutores();
+        return autorService.buscarTodosOsAutores();
     }
 
-    @GetMapping(path = "/autores/id/{id}")
+    @GetMapping(path = "/autor/{id}")
     public Autor buscarAutorPorId(@PathVariable (value = "id", required = true) int id) throws EditoraNotFound {
         return buscaAutorPorIdService.buscarPorId(id);
     }
 
-    @PostMapping(path = "/autores/save")
-    public void salvarAutoreso(@RequestBody AutorResource autorResource){
+    @PostMapping(path = "/autor")
+    public void salvarAutores(@RequestBody AutorResource autorResource){
 
-        cadastroAutor.cadastroAutor(autorResource);
+        autorService.cadastroAutor(autorResource);
     }
 
-    @DeleteMapping(path = "/autores/delete/{id}")
+    @DeleteMapping(path = "/autor/{id}")
     public void deleteAutores(@PathVariable (name ="id", required = true) int id) throws EditoraNotFound {
 
         buscaAutorPorIdService.deletarPorId(id);

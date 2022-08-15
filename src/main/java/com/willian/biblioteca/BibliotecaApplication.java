@@ -8,9 +8,7 @@ import com.willian.biblioteca.model.Livro;
 import com.willian.biblioteca.repository.AutorRepository;
 import com.willian.biblioteca.repository.EditoraRepository;
 import com.willian.biblioteca.repository.LivroRepository;
-import com.willian.biblioteca.resource.LivroResource;
-import com.willian.biblioteca.service.BuscarLivroPorIdService;
-import com.willian.biblioteca.service.CadastroLivro;
+import com.willian.biblioteca.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -40,7 +38,7 @@ public class BibliotecaApplication implements CommandLineRunner {
 		SpringApplication.run(BibliotecaApplication.class, args);
 	}
 
-	BuscarLivroPorIdService buscarLivroPorIdService = new BuscarLivroPorIdService();
+	LivroService livroService = new LivroService();
 
 	@Override
 	public void run(String... args) throws Exception {

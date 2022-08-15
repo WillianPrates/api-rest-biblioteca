@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
-class BuscarLivroPorIdServiceTest {
+class LivroServiceTest {
 
     @Autowired
     @Mock

@@ -1,9 +1,9 @@
 package com.willian.biblioteca.service;
 
-import com.willian.biblioteca.controller.AutorController;
+import com.willian.biblioteca.controller.EditoraController;
 import com.willian.biblioteca.exception.EditoraNotFound;
-import com.willian.biblioteca.model.Autor;
-import com.willian.biblioteca.repository.AutorRepository;
+import com.willian.biblioteca.model.Editora;
+import com.willian.biblioteca.repository.EditoraRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -20,35 +20,35 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
-class BuscaAutorPorIdServiceTest {
-
-
-    @Autowired
-    private AutorRepository autorRepository;
+class EditoraServiceTest {
 
     @Autowired
     @Mock
-    private AutorController autorController;
+    private EditoraRepository editoraRepository;
 
-    private Autor autor;
+    @Autowired
+    @Mock
+    private EditoraController editoraController;
 
+    private Editora editora;
 
     @Test
     void buscarPorId() throws EditoraNotFound {
 
-        autor = autorController.buscarAutorPorId(7);
+        editora = editoraController.buscarEditoraPorId(5);
 
-        assertEquals("Willian Prates", autor.getNomeAutor());
-
+        assertEquals("Editora Padrao", editora.getNomeEditora());
     }
 
     @Test
     void deletarPorId() throws EditoraNotFound {
 
-        autorController.deleteAutores(9);
+        editoraController.deleteEditora(4);
 
-        Optional<Autor> autorOptional = autorRepository.findById(9);
+        Optional<Editora> editoraOptional = editoraRepository.findById(4);
 
-        assertFalse(autorOptional.isPresent());
+        assertFalse(editoraOptional.isPresent());
+
+
     }
 }

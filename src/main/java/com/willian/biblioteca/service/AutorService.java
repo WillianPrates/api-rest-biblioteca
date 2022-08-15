@@ -2,18 +2,22 @@ package com.willian.biblioteca.service;
 
 import com.willian.biblioteca.exception.EditoraNotFound;
 import com.willian.biblioteca.model.Autor;
-import com.willian.biblioteca.model.Editora;
 import com.willian.biblioteca.repository.AutorRepository;
+import com.willian.biblioteca.resource.AutorResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BuscaAutorPorIdService {
+public class AutorService {
 
     @Autowired
     private AutorRepository autorRepository;
+
+    @Autowired
+    private AutorConversor autorConversor;
 
     public Autor buscarPorId(int id) throws EditoraNotFound {
         Optional<Autor> optionalAutor = getOptional(id);
@@ -40,7 +44,15 @@ public class BuscaAutorPorIdService {
         } else {
             autorRepository.delete(optionalAutor.get());
         }
+    }
 
+    public List<Autor> buscarTodosOsAutores(){
+        List<Autor> listAutor = autorRepository.findAll();
+        return listAutor;
+    }
 
+    public void cadastroAutor(AutorResource autorResource){
+        Autor autor = autorConversor.conversor(autorResource);
+        autorRepository.saveAndFlush(autor);
     }
 }
