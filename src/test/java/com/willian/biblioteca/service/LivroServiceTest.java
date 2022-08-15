@@ -12,10 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -29,6 +30,10 @@ class LivroServiceTest {
     @Autowired
     @Mock
     private LivroRepository livroRepository;
+
+    @Autowired
+    @Mock
+    private LivroService livroService;
 
     @Test
     public void buscarPorId() throws LivroNotFound {
@@ -50,6 +55,32 @@ class LivroServiceTest {
 
         assertFalse(optionalLivro.isPresent());
 
+    }
+
+    @Test
+    public void buscarTodosOsLivros() {
+        List<Livro> livroList = livroService.buscarTodosOsLivros();
+        boolean possui;
+        if (!livroList.isEmpty()) {
+            possui = true;
+        } else {
+            possui = false;
+        }
+        assertTrue(possui);
+    }
+
+    @Test
+    void cadastroLivro() throws LivroNotFound {
+
+        Livro lTeste = new Livro("a volta dos que nao foram 2", 2, 2, "2022", false);
+        LivroService livroService = new LivroService();
+        livroRepository.saveAll(Arrays.asList(lTeste));
+
+        Livro livro = livroController.buscarLivroPorId(lTeste.getId());
+        assertEquals("a volta dos que nao foram 2", livro.getNome());
+        assertEquals(2, livro.getIdAutor());
+        assertEquals(2, livro.getIdEditora());
+        assertEquals("2022", livro.getAno());
     }
 
 }
